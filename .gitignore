@@ -2,3 +2,4 @@ users.csv
 comments.csv
 /.idea
 config.php
+/vendor/

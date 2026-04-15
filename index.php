@@ -1,30 +1,47 @@
 <?php
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+use guestbook\Controllers\GuestbookController;
+use guestbook\Controllers\RegisterController;
+use guestbook\Controllers\LoginController;
+use guestbook\Controllers\LogoutController;
+
 session_start();
-?>
 
-<!DOCTYPE html>
-<html>
+$route = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-<?php require_once 'sectionHead.php' ?>
+if ($route === '/index.php') {
+    $route = '/';
+}
 
-<body>
+switch ($route) {
+    case '/':
+        require __DIR__ . '/Views/homeView.php';
+        break;
 
-<div class="container">
+    case '/guestbook':
+        $controller = new GuestbookController();
+        $controller->execute();
+        break;
 
-    <?php require_once 'sectionNavbar.php' ?>
-    <br>
+    case '/register':
+        $controller = new RegisterController();
+        $controller->execute();
+        break;
 
-    <div class="card card-primary">
-        <div class="card-header bg-primary text-light">
-            Головна сторінка
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Вітаємо на головній сторінці!</h5>
-            <p class="card-text">Це простий приклад веб-додатку з аутентифікацією та гостьовою книгою.</p>
-            <a href="/guestbook.php" class="btn btn-primary">Перейти до гостьової книги</a>
-        </div>
-    </div>
-</div>
+    case '/login':
+        $controller = new LoginController();
+        $controller->execute();
+        break;
 
-</body>
-</html>
+    case '/logout':
+        $controller = new LogoutController();
+        $controller->execute();
+        break;
+
+    default:
+        http_response_code(404);
+        echo '404 Not Found';
+        break;
+}

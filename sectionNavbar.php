@@ -11,25 +11,24 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- menu -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" href="guestbook.php">Гостьова книга</a>
+                    <a class="nav-link active" href="/guestbook">Гостьова книга</a>
                 </li>
             </ul>
 
             <ul class="navbar-nav navbar-right">
                 <?php if (!empty($_SESSION['auth'])): ?>
                     <li class="nav-item">
-                        <a href="logout.php" class="nav-link active">Вийти</a>
+                        <a href="/logout" class="nav-link active">Вийти</a>
                     </li>
                 <?php else: ?>
                     <li class="nav-item">
-                        <a href="register.php" class="nav-link active">Реєстрація</a>
+                        <a href="/register" class="nav-link active">Реєстрація</a>
                     </li>
                     <li class="nav-item">
-                        <a href="login.php" class="nav-link active">Увійти</a>
+                        <a href="/login" class="nav-link active">Увійти</a>
                     </li>
                 <?php endif; ?>
             </ul>
